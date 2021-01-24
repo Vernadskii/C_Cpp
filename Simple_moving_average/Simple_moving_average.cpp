@@ -3,21 +3,11 @@
 #include <vector>
 #include <cassert>
 #include "Test-cases.h"
+#include "Simple_moving_average.h"
+
 //#define NDEBUG
 
 using namespace std;
-
-
-/* Функция для вывода вектора*/
-template < typename T >
-void print_vector(vector <T>* v)
-{
-	for (auto i : *v)
-	{
-		cout << i << " " << endl;
-	}
-}
-
 
 /* Функция для генерации случайных тиков
 	quantity - количество тиков, LO и HI - левая и правая границы рандома,
@@ -34,35 +24,6 @@ void create_data(const int& quantity, const int& LO, const int& HI, vector <T> *
 	}
 }
 
-
-/* Функция вычисления simple moving average.
-	indication - набор тиков, n - длина вектора, window - длина окна*/
-template < typename T >
-vector <T> SMA(const vector<T>* indication, const int n, char16_t window)
-{
-	assert(n > 0 && window > 0);
-	vector <T> result_v;
-	result_v.reserve(n/window + 1);
-	int count = 0;
-	T sum = 0;
-	for (auto element : *indication)
-	{
-		sum += element;
-		count++;
-		if (count == window)
-		{
-			result_v.push_back(sum / static_cast<T>(window));
-			sum = 0;
-			count = 0;
-		}
-	}
-	if (count != 0) // Заносим последнюю сумму, членов которой не хватило до полного окна и сообщаем об этом
-	{
-		result_v.push_back(sum / static_cast<T>(window));
-		cout << "Last element in result didn't have enought ticks" << endl;
-	}
-	return result_v;
-}
 
 int main()
 {
