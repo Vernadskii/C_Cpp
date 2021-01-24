@@ -8,9 +8,9 @@ using namespace std;
 template < typename T >
 void print_vector(vector <T>* empty_data, int n)
 {
-	for (auto i = 0; i < n; i++)
+	for (auto i : *empty_data)
 	{
-		cout << (*empty_data)[i] << " " << endl;
+		cout << i << " " << endl;
 	}
 }
 
@@ -33,9 +33,9 @@ void create_data(const int& quantity, const int& LO, const int& HI, vector <T> *
 /* Функция вычисления simple moving average.
 	indication - набор тиков, window - длина окна*/
 template < typename T >
-vector <T> SMA(const vector<T>* indication, char16_t window)
+vector <T> SMA(const vector<T>* indication, const int n, char16_t window)
 {
-
+	//for (auto i = 0, i<n)
 	return { 0 };
 }
 
@@ -46,6 +46,6 @@ int main()
 	data.reserve(quantity);
 	create_data<double>(quantity/1000, -100, 100, &data);
 	print_vector<double>(&data, quantity);
-	//SMA <double>({ 2.9, 8, 9 }, 10);
+	SMA<double>(&data, quantity, 16);
 	return 0;
 }
