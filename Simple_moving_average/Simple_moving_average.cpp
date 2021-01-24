@@ -1,15 +1,18 @@
 ﻿#include <iostream>
 #include <cstdlib>
 #include <vector>
+#include <cassert>
+#include "Test-cases.h"
+//#define NDEBUG
 
 using namespace std;
 
 
 /* Функция для вывода вектора*/
 template < typename T >
-void print_vector(vector <T>* empty_data)
+void print_vector(vector <T>* v)
 {
-	for (auto i : *empty_data)
+	for (auto i : *v)
 	{
 		cout << i << " " << endl;
 	}
@@ -22,6 +25,7 @@ void print_vector(vector <T>* empty_data)
 template < typename T >
 void create_data(const int& quantity, const int& LO, const int& HI, vector <T> * empty_data)
 {
+	assert(LO < HI);
 	srand(static_cast<unsigned int> (time(NULL)));
 	T rand_number = 0;
 	for (auto i = 0; i < quantity; i++)
@@ -36,6 +40,7 @@ void create_data(const int& quantity, const int& LO, const int& HI, vector <T> *
 template < typename T >
 vector <T> SMA(const vector<T>* indication, const int n, char16_t window)
 {
+	assert(n > 0 && window > 0);
 	vector <T> result_v;
 	result_v.reserve(n/window + 1);
 	int count = 0;
@@ -61,6 +66,13 @@ vector <T> SMA(const vector<T>* indication, const int n, char16_t window)
 
 int main()
 {
+	cout << "Would you like to start tests? (1 - Yes, 0 - No) ";
+	bool answer = false;
+	cin >> answer;
+	if (answer)
+	{
+		test();
+	}
 	int quantity = 19;
 	int window = 8;
 	vector <double> data;
