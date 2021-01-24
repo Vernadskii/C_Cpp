@@ -8,19 +8,14 @@ using namespace std;
 /* Функция для генерации случайных тиков
 	quantity - количество тиков в тысячах*/
 template < typename T >
-vector <T> create_data(const int& quantity, const int& LO, const int& HI)
+void create_data(const int& quantity, const int& LO, const int& HI, vector <T> * empty_data)
 {
-	vector <T> result;
-	result.reserve(quantity * 1000);
-	srand(time(NULL));
+	srand(static_cast<unsigned int> (time(NULL)));
 	T rand_number = 0;
 	for (auto i = 0; i < quantity * 1000; i++)
 	{
-		result.push_back(LO + static_cast <T> (rand()) / (static_cast <T> (RAND_MAX / (HI - LO))));
-		//rand_number = LO + static_cast <T> (rand()) / (static_cast <T> (RAND_MAX / (HI - LO)));
-		//cout << rand_number << ' ' << endl;
+		empty_data->push_back(LO + static_cast <T> (rand()) / (static_cast <T> (RAND_MAX / (HI - LO))));
 	}
-	return result;
 }
 
 
@@ -35,7 +30,13 @@ vector <T> SMA(const vector<T>& indication, char16_t window)
 
 int main()
 {
-	vector<double> data = create_data<double>(1, -100, 100);
+	vector <double> data;
+	data.reserve(1000);
+	create_data<double>(1, -100, 100, &data);
+	/*for (auto i = 0; i < 1000; i++)
+	{
+		cout << data[i] << " " << endl;
+	}*/
 	//SMA <double>({ 2.9, 8, 9 }, 10);
 	return 0;
 }
