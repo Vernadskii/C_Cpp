@@ -23,10 +23,10 @@ inline vector <T> SMA(const vector<T>* indication, const int n, char16_t window)
 			count = 0;
 		}
 	}
-	if (count != 0) // Заносим последнюю сумму, членов которой не хватило до полного окна и сообщаем об этом
+	if (count != 0) // Заносим последнюю сумму, членов которой не хватило до полного окна
 	{
 		result_v.push_back(sum / static_cast<T>(window));
-		cout << "Last element in result didn't have enought ticks" << endl;
+		//cout << "Last element in result didn't have enought ticks" << endl;
 	}
 	return result_v;
 }

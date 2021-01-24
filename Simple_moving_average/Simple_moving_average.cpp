@@ -36,10 +36,10 @@ int main()
 	}
 	int quantity = 19;
 	int window = 8;
-	vector <double> data;
-	data.reserve(quantity);
-	create_data<double>(quantity, -100, 100, &data);
-	vector <double> result = SMA<double>(&data, quantity, window);
-	print_vector(&result);
+	//vector <double> data;
+	//data.reserve(quantity);
+	//create_data<double>(quantity, -100, 100, &data);
+	//vector <double> result = SMA<double>(&data, quantity, window);
+	//print_vector(&result);
 	return 0;
 }
