@@ -4,6 +4,8 @@
 #include <cassert>
 #include "Test-cases.h"
 #include "Simple_moving_average.h"
+#include <ctime>
+#include <list>
 
 //#define NDEBUG
 
@@ -34,12 +36,25 @@ int main()
 	{
 		test();
 	}
-	int quantity = 19;
-	int window = 8;
-	//vector <double> data;
-	//data.reserve(quantity);
-	//create_data<double>(quantity, -100, 100, &data);
-	//vector <double> result = SMA<double>(&data, quantity, window);
+	int quantity = 1000 * 1000;
+	//int window = 128;
+	const list<int> windows = { 4, 8, 16, 32, 64, 128 };
+	vector <double> data;
+	data.reserve(quantity);
+	create_data<double>(quantity, -100, 100, &data);
+	srand(time(0));
+	for (auto i : windows)
+	{
+		clock_t start = clock();
+		vector <double> result = SMA<double>(&data, quantity, i);
+		clock_t end = clock();
+		double seconds = (double)(end - start) / CLOCKS_PER_SEC;
+		cout << i << " = window. Runtime = " << seconds << endl; // время работы программы        
+		//cout << i <<" = window. Runtime = " << clock() / 1000.0 << endl; // время работы программы        
+	}
+	
+	
 	//print_vector(&result);
+	
 	return 0;
 }
