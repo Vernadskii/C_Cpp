@@ -36,19 +36,19 @@ int main()
 	{
 		test();
 	}
-	int quantity = 1000 * 1000;
+	const int quantity = 1000 * 1000;
 	//int window = 128;
 	const list<int> windows = { 4, 8, 16, 32, 64, 128 };
-	vector <double> data;
+	vector <float> data;
 	data.reserve(quantity);
-	create_data<double>(quantity, -100, 100, &data);
+	create_data<float>(quantity, -100, 100, &data);
 	srand(time(0));
 	for (auto i : windows)
 	{
 		clock_t start = clock();
-		vector <double> result = SMA<double>(&data, quantity, i);
+		vector <float> result = SMA<float>(&data, quantity, i);
 		clock_t end = clock();
-		double seconds = (double)(end - start) / CLOCKS_PER_SEC;
+		double seconds = (float)(end - start) / CLOCKS_PER_SEC;
 		cout << i << " = window. Runtime = " << seconds << endl; // время работы программы        
 		//cout << i <<" = window. Runtime = " << clock() / 1000.0 << endl; // время работы программы        
 	}
